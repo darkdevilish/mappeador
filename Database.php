@@ -58,6 +58,18 @@ class MySQLDatabase {
     }
   }
 
+  function bind_result_to_vars($stmt) {
+    $params = array();
+    $meta = $stmt->result_metadata();
+    
+    while($field = $meta->fetch_field()){
+      $params[] = &$row[$field->name];
+    }
+
+    call_user_func_array(array($stmt, 'bind_result'), $params);
+    return $row;
+  }
+
   private function open_connection() {
     $this->_connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(!$this->_connection) {
