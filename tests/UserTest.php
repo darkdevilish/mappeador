@@ -43,6 +43,10 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue($jane->update());
   }
 
+  function test_delete() {
+    $this->assertTrue($this->john()->delete());
+  }
+
   private function create_some_users() {
     for($i=1; $i<4; $i++){
       $u = new User();
