@@ -44,6 +44,14 @@ class MySQLDatabase {
     return $result;
   }
 
+  function prepared_stmt($sql) {
+    $stmt = $this->_connection->prepare($sql);
+    if(!$stmt) {
+      die("Prepare failed: (" . $this->_connection->errno . ") " . $this->_connection->error);
+    }
+    return $stmt;
+  }
+
   private function open_connection() {
     $this->_connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(!$this->_connection) {
