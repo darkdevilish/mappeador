@@ -30,6 +30,12 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($john->name, "John");
   }
 
+  function test_count_all() {
+    $count_all = User::count_all();
+
+    $this->assertTrue($count_all != 0);
+  }
+
   private function create_some_users() {
     for($i=1; $i<4; $i++){
       $u = new User();
