@@ -17,6 +17,13 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $this->assertNotEmpty($all_users);
   }
 
+  function test_find_all_order_by(){
+    $first_User = array_shift(User::find_all("id DESC"));
+    $last_user = array_pop(User::find_all());
+
+    $this->assertEquals($first_User->id, $last_user->id);
+  }
+
   private function create_some_users() {
     for($i=1; $i<4; $i++){
       $u = new User();
