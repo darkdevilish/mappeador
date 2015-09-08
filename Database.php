@@ -37,10 +37,23 @@ class MySQLDatabase {
     }
   }
 
+  function query($sql) {
+    $this->last_query = $sql;
+    $result = $this->_connection->query($sql);
+    $this->confirm_query($result);
+    return $result;
+  }
+
   private function open_connection() {
     $this->_connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(!$this->_connection) {
       die("Connect failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+    }
+  }
+
+  private function confirm_query($result) {
+    if(!$result){
+      die("Database query failed: " . $this->_connection->errno . "<br><br>");
     }
   }
 
