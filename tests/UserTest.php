@@ -47,6 +47,21 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue($this->john()->delete());
   }
 
+  function test_destroy_created_users() {
+    $this->clean_up();
+    $users = User::find_all();
+
+    $this->assertEmpty($users);
+  }
+
+  /**
+   * @afterClass
+   */
+  static function tearDownAfterClass() {
+    $db = MySQLDatabase::getInstance();
+    $db->close_connection();
+  }
+
   private function create_some_users() {
     for($i=1; $i<4; $i++){
       $u = new User();
@@ -58,6 +73,18 @@ class UserTest extends PHPUnit_Framework_TestCase {
   private function john() {
     $john = array_shift(User::find_all());
     return $john;
+  }
+
+  private function clean_up() {
+    $first_usr = array_shift(User::find_all());
+    $usr_id = (int) $first_usr->id;
+    $last_usr = array_pop(User::find_all());
+    $last_usr_id = (int) $last_usr->id;
+
+    for($usr_id; $usr_id<=$last_usr_id; $usr_id++){
+      $u = User::find_by_id($usr_id);
+      $u->delete();
+    }
   }
 
 }
