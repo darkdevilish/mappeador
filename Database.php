@@ -58,14 +58,19 @@ class MySQLDatabase {
     }
   }
 
+  /**
+   *Binds result to vars dynamically and @return result arrray
+   */
   function bind_result_to_vars($stmt) {
     $params = array();
     $meta = $stmt->result_metadata();
     
+    //fetch db field names from result to array
     while($field = $meta->fetch_field()){
       $params[] = &$row[$field->name];
     }
 
+    //calls bind_result function dynamically with params array
     call_user_func_array(array($stmt, 'bind_result'), $params);
     return $row;
   }
