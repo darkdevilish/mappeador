@@ -70,6 +70,12 @@ class MySQLDatabase {
     return $row;
   }
 
+  function execute($stmt) {
+    if(!$execute_result = $stmt->execute()){
+      die("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
+    } 
+  }
+
   private function open_connection() {
     $this->_connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(!$this->_connection) {
