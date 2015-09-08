@@ -76,6 +76,10 @@ class MySQLDatabase {
     } 
   }
 
+  function insert_id() {
+    return $this->_connection->insert_id;
+  }
+
   private function open_connection() {
     $this->_connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(!$this->_connection) {
