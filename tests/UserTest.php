@@ -10,4 +10,19 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue($john->save());
   }
 
+  function test_find_all() {
+    $this->create_some_users();
+    $all_users = User::find_all();
+
+    $this->assertNotEmpty($all_users);
+  }
+
+  private function create_some_users() {
+    for($i=1; $i<4; $i++){
+      $u = new User();
+      $u->name = "John"."$i";
+      $u->save();
+    }
+  }
+
 }
