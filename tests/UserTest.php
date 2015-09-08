@@ -24,12 +24,23 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($first_User->id, $last_user->id);
   }
 
+  function test_find_by_id() {
+    $john = User::find_by_id($this->john()->id);
+
+    $this->assertEquals($john->name, "John");
+  }
+
   private function create_some_users() {
     for($i=1; $i<4; $i++){
       $u = new User();
       $u->name = "John"."$i";
       $u->save();
     }
+  }
+
+  private function john() {
+    $john = array_shift(User::find_all());
+    return $john;
   }
 
 }
