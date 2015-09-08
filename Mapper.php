@@ -48,6 +48,22 @@ abstract class Mapper extends DatabaseObject{
     return ($affected_rows == 1) ? true : false;
   }
 
+  function delete() {
+    $db = MySQLDatabase::getInstance();
+
+    $sql = "DELETE FROM ".static::$table_name;
+    $sql .= " WHERE id=". "?";
+    $sql .= " LIMIT 1";
+    $stmt = $db->prepared_stmt($sql);
+    $bind_result = $stmt->bind_param("i", $this->id);
+    $db->confirm_bind_result($bind_result, $stmt);
+    $db->execute($stmt);
+    $affected_rows = $stmt->affected_rows;
+    $stmt->free_result();
+    $stmt->close();
+    return ($affected_rows == 1) ? true : false;
+  }
+
   protected function attributes() {
     $attributes = array();
     foreach(static::get_db_tbl_fields() as $field) {
