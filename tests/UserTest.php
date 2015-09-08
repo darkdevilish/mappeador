@@ -36,6 +36,13 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue($count_all != 0);
   }
 
+  function test_update() {
+    $jane = User::find_by_id((int) $this->john()->id);
+    $jane->name = "Jane";
+
+    $this->assertTrue($jane->update());
+  }
+
   private function create_some_users() {
     for($i=1; $i<4; $i++){
       $u = new User();
