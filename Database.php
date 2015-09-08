@@ -24,6 +24,19 @@ class MySQLDatabase {
     $this->open_connection();
   }
 
+  /**
+   *You cannot unset static property, you need to set it to NULL instead.
+   *If you dont set instance to NULL each time you get the instance after
+   *closing the connection it will have the _connection undefined.
+   */
+  function close_connection() {
+    if(isset($this->_connection)) {
+      $this->_connection->close();
+      unset($this->_connection);
+      self::$_instance = NULL;
+    }
+  }
+
   private function open_connection() {
     $this->_connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(!$this->_connection) {
