@@ -44,6 +44,15 @@ abstract class DatabaseObject {
     return $object_array;
   }
 
+  static function count_all() {
+    $db = MySQLDatabase::getInstance();
+
+    $sql = "SELECT COUNT(*) FROM ".static::$table_name;
+    $result_set = $db->query($sql);
+    $row = $result_set->fetch_array();
+    return array_shift($row);
+  }
+
   static function instatiate($record) {
     $class_name = get_called_class();
     $object = new $class_name;
