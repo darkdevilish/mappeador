@@ -53,6 +53,18 @@ abstract class DatabaseObject {
     return array_shift($row);
   }
 
+  static function get_db_tbl_fields() {
+    $db = MySQLDatabase::getInstance();
+
+    $fields = array();
+    $sql = "DESCRIBE ".static::$table_name;
+    $result_set = $db->query($sql);
+    while($r = $result_set->fetch_array()){
+      $fields[] = $r['Field'];
+    }
+    return $fields;
+  }
+
   static function instatiate($record) {
     $class_name = get_called_class();
     $object = new $class_name;
