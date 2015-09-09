@@ -80,7 +80,7 @@ Example that doesn't need sanitazation(returns object array):
 ```php
 use mappeador\custom\orm\DatabaseObject;
 
-$sql = "SELECT * FROM " . static::$table_name;
+$sql = "SELECT * FROM users";
 $result_set = DatabaseObject::find_by_sql($sql);
 ```
 Example that needs sanitazation:

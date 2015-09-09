@@ -1,0 +1,21 @@
+{
+    "name": "mappeador/mappeador",
+    "type": "library",
+    "description": "Mappeador is a simple, flexible and easy way to perform php crud with MYSQL.",
+    "keywords": ["mappeador", "orm"],
+    "homepage": "https://github.com/darkdevilish/mappeador",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anthony Gonzalez",
+            "email": "anthonyzg3@hotmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "files": [ "initialize.php" ]
+    }
+}
