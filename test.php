@@ -1,5 +1,5 @@
 <?php
-use mappeador\custom\orm\MySQLDatabase;
+use mappeador\MySQLDatabase;
 
 require_once __DIR__ . '/initialize.php';
 

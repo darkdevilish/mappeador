@@ -1,5 +1,5 @@
 <?php
-use mappeador\custom\orm\MySQLDatabase;
+use mappeador\MySQLDatabase;
 
 class UserTest extends PHPUnit_Framework_TestCase {
 
