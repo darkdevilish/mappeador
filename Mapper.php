@@ -1,7 +1,7 @@
 <?php
-namespace mappeador\custom\orm;
-use mappeador\custom\orm\MySQLDatabase;
-use mappeador\custom\orm\DatabaseObject;
+namespace mappeador;
+use mappeador\MySQLDatabase;
+use mappeador\DatabaseObject;
 
 abstract class Mapper extends DatabaseObject{
 
