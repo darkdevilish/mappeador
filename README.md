@@ -17,7 +17,7 @@ Once the database and the table is created you have to create classs that inheri
 
 Example create and table called users with 2 fields id and name, then create the following class:
 ```php
-use mappeador\custom\orm\Mapper;
+use mappeador\Mapper;
 
 class User extends Mapper {
 
@@ -78,14 +78,14 @@ Find by sql can be use directly with DatabaseObject class, Mapper or class that 
 
 Example that doesn't need sanitazation(returns object array):
 ```php
-use mappeador\custom\orm\DatabaseObject;
+use mappeador\DatabaseObject;
 
 $sql = "SELECT * FROM users";
 $result_set = DatabaseObject::find_by_sql($sql);
 ```
 Example that needs sanitazation:
 ```php
-use mappeador\custom\orm\DatabaseObject;
+use mappeador\DatabaseObject;
 
 $param = array(1);
 $sql = "SELECT * FROM users WHERE id=? LIMIT 1";
@@ -94,7 +94,7 @@ $result_set = DatabaseObject::find_by_sql($sql, $param);
 
 Mysql query:
 ```php
-use mappeador\custom\orm\MySQLDatabase;
+use mappeador\MySQLDatabase;
 
 $db = MySQLDatabase::getInstance();
 
@@ -104,7 +104,7 @@ $db->query($sql);
 
 Close connection:
 ```php
-use mappeador\custom\orm\MySQLDatabase;
+use mappeador\MySQLDatabase;
 
 $db = MySQLDatabase::getInstance();
 if( isset($db) ) { $db->close_connection(); }
