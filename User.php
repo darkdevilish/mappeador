@@ -1,5 +1,5 @@
 <?php
-use mappeador\custom\orm\Mapper;
+use mappeador\Mapper;
 
 class User extends Mapper {
 

@@ -1,5 +1,5 @@
 <?php
-namespace mappeador\custom\orm;
+namespace mappeador;
 use Mysqli;
 
 class MySQLDatabase {
