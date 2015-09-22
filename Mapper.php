@@ -5,6 +5,15 @@ use mappeador\DatabaseObject;
 
 abstract class Mapper extends DatabaseObject{
 
+  /**
+   * Creates public properties dynamically from tbl db fields
+   */
+  function __construct() {
+    foreach(static::get_db_tbl_fields() as $field) {
+      $this->{$field} = NULL;
+    }
+  }
+
   function save() {
   // A new record won't have an id yet.
     return isset($this->id) ? $this->update() : $this->create();
