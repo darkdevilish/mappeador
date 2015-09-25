@@ -19,6 +19,17 @@ abstract class DatabaseObject {
     return !empty($result_array) ? array_shift($result_array) : false;
   }
 
+  static function find_where($clause, $params) {
+    $clause = $clause." ";
+    $sql = "SELECT * FROM ".static::$table_name." WHERE ". $clause;
+    $result_array = static::find_by_sql($sql, $params);
+    if( preg_match('/LIMIT 1 /', $clause) ) {
+      return !empty($result_array) ? array_shift($result_array) : false;
+    } else {
+      return $result_array;
+    }
+  }
+
   static function find_by_sql($sql="", $bind_params_array=NULL){
     $db = MySQLDatabase::getInstance();
 
