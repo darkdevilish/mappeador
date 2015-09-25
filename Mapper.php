@@ -9,8 +9,14 @@ abstract class Mapper extends DatabaseObject{
    * Creates public properties dynamically from tbl db fields
    */
   function __construct() {
-    foreach(static::get_db_tbl_fields() as $field) {
-      $this->{$field} = NULL;
+    if( !empty($params) ) {
+      foreach($params as $param => $val) {
+        $this->{$param} = $val;
+      }
+    } else {
+      foreach(static::get_db_tbl_fields() as $field) {
+        $this->{$field} = NULL;
+      }
     }
   }
 
