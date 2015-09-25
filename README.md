@@ -34,6 +34,12 @@ $john->name = "John";
 $john->save();
 ```
 
+Save function at instantiation with array params:
+```php
+$john = new User(array( 'name' => 'John' ));
+$john->save();
+```
+
 Find all function returns an object array:
 ```php
 $users = User::find_all();
@@ -53,6 +59,13 @@ Find by id (the parameter has to be an integer):
 $user = User::find_by_id(1);
 echo $user->name;
 ```
+
+Find where (will return one object if LIMIT 1):
+```php
+$find_johns = User::find_where( "name = ?", array("John") );
+$find_john = User::find_where( "name = ? LIMIT 1", array('John') );
+```
+
 Count all:
 ```php
 User::count_all();
