@@ -10,6 +10,11 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $this->assertTrue($john->save());
   }
 
+  function test_save_at_instantiation_with_array_params() {
+    $jack = new User( array( 'name' => 'Jack' ));
+    $this->assertTrue($jack->save());
+  }
+
   function test_find_all() {
     $this->create_some_users();
     $all_users = User::find_all();
@@ -28,6 +33,14 @@ class UserTest extends PHPUnit_Framework_TestCase {
     $john = User::find_by_id($this->john()->id);
 
     $this->assertEquals($john->name, "John");
+  }
+
+  function test_find_where() {
+    $find_johns = User::find_where( "name = ?", array("John") );
+    $find_john = User::find_where( "name = ? LIMIT 1", array('John') );
+
+    $this->assertNotEmpty($find_johns);
+    $this->assertEquals($find_john->name, "John");
   }
 
   function test_count_all() {
