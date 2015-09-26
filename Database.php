@@ -47,14 +47,14 @@ class MySQLDatabase {
   function prepared_stmt($sql) {
     $stmt = $this->_connection->prepare($sql);
     if(!$stmt) {
-      die("There was an error contact administrator."/*"Prepare failed: (" . $this->_connection->errno . ") " . $this->_connection->error*/);
+      die("There was an error please contact administrator."/*"Prepare failed: (" . $this->_connection->errno . ") " . $this->_connection->error*/);
     }
     return $stmt;
   }
 
   function confirm_bind_result($bind_result, $stmt) {
     if(!$bind_result){
-      die("There was an error contact administrator."/*"Binding failed: (" . $stmt->errno . ") " . $stmt->error*/);
+      die("There was an error please contact administrator."/*"Binding failed: (" . $stmt->errno . ") " . $stmt->error*/);
     }
   }
 
@@ -72,7 +72,7 @@ class MySQLDatabase {
 
   function execute($stmt) {
     if(!$execute_result = $stmt->execute()){
-      die("There was an error contact administrator."/*"Execute failed: (" . $stmt->errno . ") " . $stmt->error*/);
+      die("There was an error please contact administrator."/*"Execute failed: (" . $stmt->errno . ") " . $stmt->error*/);
     } 
   }
 
@@ -83,13 +83,13 @@ class MySQLDatabase {
   private function open_connection() {
     $this->_connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(!$this->_connection) {
-      die("There was an error contact administrator."/*"Connect failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error*/);
+      die("There was an error please contact administrator."/*"Connect failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error*/);
     }
   }
 
   private function confirm_query($result) {
     if(!$result){
-      die("There was an error contact administrator."/*"Database query failed: " . $this->_connection->errno*/);
+      die("There was an error please contact administrator."/*"Database query failed: " . $this->_connection->errno*/);
     }
   }
 
