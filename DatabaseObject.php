@@ -101,7 +101,7 @@ abstract class DatabaseObject {
   }
 
   /**
-   *@return table name decamelize
+   *@return table name decamelize and adds "s" at the end to pluralize(CAREFUL)
    * Takes the class name and creates a variable with the first letter lowercase
    * and another one all lowercase and another one with the length of the class 
    * name then loops through each letter, takes the table name var and concatenate 
