@@ -47,37 +47,32 @@ class MySQLDatabase {
   function prepared_stmt($sql) {
     $stmt = $this->_connection->prepare($sql);
     if(!$stmt) {
-      die("Prepare failed: (" . $this->_connection->errno . ") " . $this->_connection->error);
+      die("There was an error contact administrator."/*"Prepare failed: (" . $this->_connection->errno . ") " . $this->_connection->error*/);
     }
     return $stmt;
   }
 
   function confirm_bind_result($bind_result, $stmt) {
     if(!$bind_result){
-      die("Binding failed: (" . $stmt->errno . ") " . $stmt->error);
+      die("There was an error contact administrator."/*"Binding failed: (" . $stmt->errno . ") " . $stmt->error*/);
     }
   }
 
-  /**
-   *Binds result to vars dynamically and @return result arrray
-   */
   function bind_result_to_vars($stmt) {
     $params = array();
     $meta = $stmt->result_metadata();
     
-    //fetch db field names from result to array
     while($field = $meta->fetch_field()){
       $params[] = &$row[$field->name];
     }
 
-    //calls bind_result function dynamically with params array
     call_user_func_array(array($stmt, 'bind_result'), $params);
     return $row;
   }
 
   function execute($stmt) {
     if(!$execute_result = $stmt->execute()){
-      die("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
+      die("There was an error contact administrator."/*"Execute failed: (" . $stmt->errno . ") " . $stmt->error*/);
     } 
   }
 
@@ -88,13 +83,13 @@ class MySQLDatabase {
   private function open_connection() {
     $this->_connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(!$this->_connection) {
-      die("Connect failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+      die("There was an error contact administrator."/*"Connect failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error*/);
     }
   }
 
   private function confirm_query($result) {
     if(!$result){
-      die("Database query failed: " . $this->_connection->errno . "<br><br>");
+      die("There was an error contact administrator."/*"Database query failed: " . $this->_connection->errno*/);
     }
   }
 
