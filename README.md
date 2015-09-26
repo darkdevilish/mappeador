@@ -27,6 +27,8 @@ class User extends Mapper {
 }
 ```
 
+[NOTE: Careful when naming table names in database and you don't override the class property, the class name used to set that variable it won't get pluralize it only adds an "s" at the end of the name.]
+
 Save function it will return true if saved:
 ```php
 $john = new User();
