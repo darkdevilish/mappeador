@@ -3,6 +3,8 @@ namespace mappeador;
 use mappeador\MySQLDatabase;
 
 abstract class DatabaseObject {
+  
+  protected static $table_name = "";
 
   static function find_all($orderBy=NULL) {
     $sql = "SELECT * FROM " . static::$table_name;
@@ -96,6 +98,27 @@ abstract class DatabaseObject {
       if(is_string($param)){ $params_type .= "s"; }
     }
     return $params_type;
+  }
+
+  /**
+   *@return table name decamelize
+   * Takes the class name and creates a variable with the first letter lowercase
+   * and another one all lowercase and another one with the length of the class 
+   * name then loops through each letter, takes the table name var and concatenate 
+   * each lowercase letter from var, if the variable with first lowercase equals 
+   * the all lowercase will add underscore.
+   */
+  protected static function get_tbl_name() {
+    $class_name = get_called_class();
+    $str = lcfirst($class_name);
+    $lc = strtolower($str);
+    $tbl_name = "";
+    $length = strlen($str);
+    
+    for ($i = 0; $i < $length; ++$i) {
+      $tbl_name .= ($str[$i] == $lc[$i] ? '' : '_') . $lc[$i];
+    }
+    return $tbl_name."s";
   }
 
   private function has_attribute($attribute) {
