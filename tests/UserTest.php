@@ -71,8 +71,7 @@ class UserTest extends PHPUnit_Framework_TestCase {
    * @afterClass
    */
   static function tearDownAfterClass() {
-    $db = MySQLDatabase::getInstance();
-    $db->close_connection();
+    MySQLDatabase::getInstance()->close_connection();
   }
 
   private function create_some_users() {
