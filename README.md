@@ -13,21 +13,21 @@ defined('DB_NAME')   ? null : define("DB_NAME", "db_name");
 
 # Usage
 First you need to configure the initialize file depending on your file structure and require the file.
-Once the database and the table is created you have to create classs that inherits from Mapper, public variables for each table field will be created automatically you can override if you want.
+Once the database and the table is created you have to create class that inherits from Mapper, and create public variables for each table field.
 
 Example create and table called users with 2 fields id and name, then create the following class:
 ```php
 use mappeador\Mapper;
 
 class User extends Mapper {
-  //if you want to override the table name
+
   protected static $table_name="users";
 
+  public $id;
+	public $name;
 
 }
 ```
-
-[NOTE: Careful when naming table names in database and you don't override the class property, the class name used to set that variable it won't get pluralize it only adds an "s" at the end of the name.]
 
 Save function it will return true if saved:
 ```php
