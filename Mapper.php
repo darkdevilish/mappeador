@@ -6,18 +6,12 @@ use mappeador\DatabaseObject;
 abstract class Mapper extends DatabaseObject{
 
   /**
-   * Creates public properties dynamically from tbl db fields
+   * Assings property values from array keys if array passed.
    */
-  function __construct($params=NULL) {
-    static::$table_name = static::get_tbl_name();
-    
+  function __construct($params=NULL) {    
     if( !empty($params) ) {
       foreach($params as $param => $val) {
         $this->{$param} = $val;
-      }
-    } else {
-      foreach(static::get_db_tbl_fields() as $field) {
-        $this->{$field} = NULL;
       }
     }
   }
