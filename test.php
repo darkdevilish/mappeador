@@ -104,5 +104,6 @@ echo "<h3>Test delete()</h3>";
    *Close Connection
    *@return Last Query
    */
-  MySQLDatabase::getInstance()->close_connection(); 
+  $db = MySQLDatabase::getInstance();
+  $db->close_connection(); 
   echo var_dump($db);
